@@ -86,24 +86,24 @@ class XKCD(BotPlugin):
         self.pattern = None
 
 
-    def callback_message(self, msg):
-        author_nick = str(msg.frm.nick)
-        ignore_nicks = [self.bot_identifier.nick]
+    #def callback_message(self, msg):
+    #    author_nick = str(msg.frm.nick)
+    #    ignore_nicks = [self.bot_identifier.nick]
 
-        # Ignore all messages from the bot itself
-        if author_nick in ignore_nicks:
-            return
+    #    # Ignore all messages from the bot itself
+    #    if author_nick in ignore_nicks:
+    #        return
 
-        if str(msg.to) == self.bot_identifier.nick:
-            channel_id = self.build_identifier(str(msg.frm.nick))
-        else:
-            channel_id = self.build_identifier(str(msg.to));
+    #    if str(msg.to) == self.bot_identifier.nick:
+    #        channel_id = self.build_identifier(str(msg.frm.nick))
+    #    else:
+    #        channel_id = self.build_identifier(str(msg.to));
 
-        match = re.search(self.pattern, msg.body, re.IGNORECASE)
-        if match is not None:
-            comic = self._get_comic(channel_id, match)
-            if comic:
-                self.send(channel_id, comic['img'])
+    #    match = re.search(self.pattern, msg.body, re.IGNORECASE)
+    #    if match is not None:
+    #        comic = self._get_comic(channel_id, match)
+    #        if comic:
+    #            self.send(channel_id, comic['img'])
 
 
     def _get_comic(self, num):
@@ -133,7 +133,7 @@ class XKCD(BotPlugin):
 
         if comic:
             url = '{}/{}/'.format(self.client.base_uri, comic['num'])
-            yield '{}\n{}\n{}\n'.format(url, comic['img'], comic['alt'])
+            yield '{}\n{}\n'.format(url, comic['alt'])
 
         else:
             yield 'That comic was not found'
