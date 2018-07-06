@@ -110,7 +110,7 @@ class XKCD(BotPlugin):
         if num == 'latest':
             comic = self.client.latest()
 
-        elif int(num) > 0:
+        elif num and int(num) > 0:
             comic = self.client.comic(num)
 
         else:
@@ -132,7 +132,7 @@ class XKCD(BotPlugin):
         comic = self._get_comic(num)
 
         if comic:
-            url = '{}/{}/'.format(self._client.base_uri, comic['num'])
+            url = '{}/{}/'.format(self.client.base_uri, comic['num'])
             yield '{}\n{}\n{}\n'.format(url, comic['img'], comic['alt'])
 
         else:
