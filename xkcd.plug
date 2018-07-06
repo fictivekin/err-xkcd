@@ -1,0 +1,9 @@
+[Core]
+Name = XKCD
+Module = xkcd
+
+[Python]
+Version = 3
+
+[Documentation]
+Description = Shows XKCD comics
